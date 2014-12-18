@@ -22,3 +22,6 @@ sonata_admin:
             master_tables:
                 label: Master Tables
                 roles: [ROLE_SONATA_ADMIN]
+
+    templates:
+        user_block: Admin/user_block.html.twig

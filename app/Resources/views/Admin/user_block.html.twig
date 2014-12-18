@@ -2,7 +2,7 @@
     {% if app.user %}
         {% set _bg_class = "bg-light-blue" %}
         {% set _logout_uri = url('fos_user_security_logout') %}
-        {% set _logout_text = 'Cerrar Sesión' %}
+        {% set _logout_text = 'Logout' %}
         {#{% set _user_image = asset(sonata_user.defaultAvatar) %}#}
         {# Customize this with your profile picture implementation, see below for example #}
         {#{% set _user_image = app.user.profilePicture|default(asset(sonata_user.defaultAvatar)) %}#}
@@ -11,7 +11,7 @@
             {% set _logout_uri = url(app.request.get('_route')
             , app.request.get('_route_params')|merge({'_switch_user': '_exit'})) %}
             {#{% set _logout_uri = url('sonata_admin_dashboard', {'_switch_user': '_exit'}) %}#}
-            {% set _logout_text = '(Salir)' %}
+            {% set _logout_text = '(Exit)' %}
         {% endif %}
         {#<li class="user-header {{ _bg_class }}">#}
             {#{% if _user_image %}#}
@@ -24,21 +24,21 @@
         <li class="user-body">
         </li>
         #}
-        <li class="divider"></li>
-        <li{# class="user-footer"#}>
-            {#<div class="text-center">#}
-            <div {#class="text-center"#} style="padding-left: 10px">
+        {# <li class="divider"></li>
+        <li{# class="user-footer"# }>
+            {#<div class="text-center"># }
+            <div {#class="text-center"# } style="padding-left: 10px">
                 <a href="{{ path('home') }}"><i class="fa fa-home fa-fw"></i>Retornar a la Parte Pública</a>
             </div>
             <div class="clearfix"></div>
         </li>
         <li class="divider"></li>
         <li>
-            <div {#class="text-center"#} style="padding-left: 10px">
+            <div {#class="text-center"# } style="padding-left: 10px">
                 <a href="{{ path('edit_profile') }}"><i class="fa fa-user fa-fw"></i>Mi Perfil</a>
             </div>
             <div class="clearfix"></div>
-        </li>
+        </li>#}
         <li class="divider"></li>
         <li class="user-footer">
             <div class="pull-right">
