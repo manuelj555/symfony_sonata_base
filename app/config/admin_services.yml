@@ -1,0 +1,6 @@
+services:
+    app.admin.users:
+        class: AppBundle\Admin\UserAdmin
+        arguments: [~, AppBundle\Entity\User, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: master_tables, label: Users, label_translator_strategy: sonata.admin.label.strategy.noop }

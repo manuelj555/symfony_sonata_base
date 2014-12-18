@@ -1,0 +1,49 @@
+{% block user_block %}
+    {% if app.user %}
+        {% set _bg_class = "bg-light-blue" %}
+        {% set _logout_uri = url('fos_user_security_logout') %}
+        {% set _logout_text = 'Cerrar Sesión' %}
+        {#{% set _user_image = asset(sonata_user.defaultAvatar) %}#}
+        {# Customize this with your profile picture implementation, see below for example #}
+        {#{% set _user_image = app.user.profilePicture|default(asset(sonata_user.defaultAvatar)) %}#}
+        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+            {% set _bg_class = "bg-light-green" %}
+            {% set _logout_uri = url(app.request.get('_route')
+            , app.request.get('_route_params')|merge({'_switch_user': '_exit'})) %}
+            {#{% set _logout_uri = url('sonata_admin_dashboard', {'_switch_user': '_exit'}) %}#}
+            {% set _logout_text = '(Salir)' %}
+        {% endif %}
+        {#<li class="user-header {{ _bg_class }}">#}
+            {#{% if _user_image %}#}
+                {#<img src="{{ _user_image }}" class="img-circle" alt="Avatar" />#}
+            {#{% endif %}#}
+            {#<p>{{ app.user }}</p>#}
+        {#</li>#}
+        {#
+        Uncomment to add some information
+        <li class="user-body">
+        </li>
+        #}
+        <li class="divider"></li>
+        <li{# class="user-footer"#}>
+            {#<div class="text-center">#}
+            <div {#class="text-center"#} style="padding-left: 10px">
+                <a href="{{ path('home') }}"><i class="fa fa-home fa-fw"></i>Retornar a la Parte Pública</a>
+            </div>
+            <div class="clearfix"></div>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <div {#class="text-center"#} style="padding-left: 10px">
+                <a href="{{ path('edit_profile') }}"><i class="fa fa-user fa-fw"></i>Mi Perfil</a>
+            </div>
+            <div class="clearfix"></div>
+        </li>
+        <li class="divider"></li>
+        <li class="user-footer">
+            <div class="pull-right">
+                <a href="{{ _logout_uri }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out fa-fw"></i> {{ _logout_text }}</a>
+            </div>
+        </li>
+    {% endif %}
+{% endblock %}

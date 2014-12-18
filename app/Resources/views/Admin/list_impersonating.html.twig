@@ -1,0 +1,24 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    {% if app.user and object.username != app.user.username %}
+        {% set _uri = url(app.request.get('_route')
+        , app.request.get('_route_params')|merge({'_switch_user': object.username})) %}
+        <a href="{{ _uri }}" title="{{ 'switch_user'|trans({}, 'SonataUserBundle')}}">
+            <img src="{{ asset('bundles/sonataadmin/famfamfam/group_go.png') }}"  alt="{{ 'switch_user'|trans({}, 'SonataUserBundle')}}" />
+        </a>
+    {% else %}
+        -
+    {% endif %}
+{% endblock %}

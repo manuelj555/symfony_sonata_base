@@ -1,0 +1,13 @@
+{% set _label = actions.label %}
+{% set _route = actions.route_name %}
+{% set _route_params = actions.route_params|default([]) %}
+{#{% if admin.isGranted('VIEW', object) and admin.hasRoute('show') %}#}
+{#<a href="{{ path(_route, _route_params) }}" class="btn btn-sm btn-default">#}
+<a href="{{ admin.generateObjectUrl(_route, object) }}" class="btn btn-sm btn-default">
+    {% if actions.icon is defined %}<i class="glyphicon glyphicon-{{ actions.icon }}"></i>{% endif %}
+    {% if actions.render is defined %}{{ render(controller(actions.render, {
+        (admin.getIdParameter()): object.id,
+    })) }}{% endif %}
+    {{ _label }}
+</a>
+{#{% endif %}#}
